@@ -11,7 +11,7 @@ resource "yandex_compute_instance" "bastion" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd80h6sr5fl2oe87o4e1"
+      image_id = "fd876gids9srs8ma0592"
       size     = 10
     }
   }

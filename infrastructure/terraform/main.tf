@@ -17,9 +17,9 @@ provider "yandex" {
 resource "yandex_vpc_network" "main" {
   name = "main-vpc"
 }
-
 resource "yandex_vpc_gateway" "internet" {
   name = "internet-gateway"
+  shared_egress_gateway {}
 }
 
 resource "yandex_vpc_route_table" "public" {
