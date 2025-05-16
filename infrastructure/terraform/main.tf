@@ -26,7 +26,7 @@ resource "yandex_vpc_route_table" "public" {
   network_id = yandex_vpc_network.main.id
   static_route {
     destination_prefix = "0.0.0.0/0"
-    next_hop_gateway_id = yandex_vpc_gateway.internet.id
+    gateway_id        = yandex_vpc_gateway.internet.id
   }
 }
 
