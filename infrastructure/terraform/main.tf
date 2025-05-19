@@ -43,4 +43,5 @@ resource "yandex_vpc_subnet" "private" {
   zone           = "ru-central1-a"
   network_id     = yandex_vpc_network.main.id
   v4_cidr_blocks = ["10.10.2.0/24"]
+  route_table_id = yandex_vpc_route_table.private.id
 }
