@@ -43,7 +43,11 @@ resource "null_resource" "nat_setup" {
       "sudo sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf",
       # NAT через iptables
       "sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE",
-      "sudo apt update && sudo apt install -y iptables-persistent",
+      # --- Важно: предотвращаем зависание установки iptables-persistent ---
+      "echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections",
+      "echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections",
+      "sudo DEBIAN_FRONTEND=noninteractive apt update",
+      "sudo DEBIAN_FRONTEND=noninteractive apt install -y iptables-persistent",
       "sudo netfilter-persistent save"
     ]
   }
